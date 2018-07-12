@@ -16,15 +16,24 @@ public class BlogController {
     }
 
     @GetMapping("/show")
-    public  String show (@RequestParam String title,
-                         @RequestParam String description,
-                         @RequestParam String author,
-                         ModelMap modelMap ) {
-        Post post = new Post(title,description,author);
-        modelMap.put("post",post);
+    public String show(@RequestParam String title,
+                       @RequestParam String description,
+                       @RequestParam String author,
+                       ModelMap modelMap) {
+        Post post = new Post(title, description, author);
+        modelMap.put("post", post);
         return "show";
 
 
     }
-    }
+
+    @GetMapping("/all")
+        public String all (ModelMap modelMap){
+            modelMap.put("posts", Post.findAll());
+            return "all";
+
+        }
+
+}
+
 
